@@ -1,9 +1,7 @@
 
 from app.core.db import get_conn
 
-# ================================================
-# OBTENER TODOS LOS TUTORIALES
-# ================================================
+
 def obtener_tutoriales():
     conn = get_conn()
     cursor = conn.cursor(dictionary=True)
@@ -12,9 +10,7 @@ def obtener_tutoriales():
     conn.close()
     return tutoriales
 
-# ================================================
-# OBTENER TUTORIAL POR ID
-# ================================================
+
 def obtener_tutorial_por_id(id_tutorial):
     conn = get_conn()
     cursor = conn.cursor(dictionary=True)
@@ -23,9 +19,6 @@ def obtener_tutorial_por_id(id_tutorial):
     conn.close()
     return tutorial
 
-# ================================================
-# INSERTAR NUEVO TUTORIAL
-# ================================================
 def insertar_tutorial(id_categoria, titulo, descripcion):
     conn = get_conn()
     cursor = conn.cursor()
@@ -39,9 +32,6 @@ def insertar_tutorial(id_categoria, titulo, descripcion):
     conn.close()
     return nuevo_id
 
-# ================================================
-# ACTUALIZAR TUTORIAL
-# ================================================
 def actualizar_tutorial(id_tutorial, id_categoria, titulo, descripcion):
     conn = get_conn()
     cursor = conn.cursor()
@@ -60,9 +50,7 @@ def actualizar_tutorial(id_tutorial, id_categoria, titulo, descripcion):
     conn.close()
     return actualizado
 
-# ================================================
-# ELIMINAR TUTORIAL
-# ================================================
+
 def eliminar_tutorial(id_tutorial):
     conn = get_conn()
     cursor = conn.cursor()

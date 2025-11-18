@@ -1,8 +1,5 @@
 from app.core.db import get_conn
 
-# ============================================================
-# ✅ Insertar trabajo
-# ============================================================
 def insertar_trabajo(titulo, descripcion):
     conexion = get_conn()
     try:
@@ -20,10 +17,6 @@ def insertar_trabajo(titulo, descripcion):
     finally:
         conexion.close()
 
-
-# ============================================================
-# ✅ Listar todos los trabajos
-# ============================================================
 def obtener_trabajos():
     conexion = get_conn()
     try:
@@ -37,9 +30,6 @@ def obtener_trabajos():
         conexion.close()
 
 
-# ============================================================
-# ✅ Obtener un trabajo por ID
-# ============================================================
 def obtener_trabajo_por_id(id_trabajo):
     conexion = get_conn()
     try:
@@ -55,10 +45,6 @@ def obtener_trabajo_por_id(id_trabajo):
     finally:
         conexion.close()
 
-
-# ============================================================
-# ✅ Actualizar trabajo
-# ============================================================
 def actualizar_trabajo(id_trabajo, titulo, descripcion):
     conexion = get_conn()
     try:
@@ -77,9 +63,6 @@ def actualizar_trabajo(id_trabajo, titulo, descripcion):
         conexion.close()
 
 
-# ============================================================
-# ✅ Eliminar trabajo
-# ============================================================
 def eliminar_trabajo(id_trabajo):
     conexion = get_conn()
     try:

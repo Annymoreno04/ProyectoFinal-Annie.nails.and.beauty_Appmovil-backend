@@ -12,9 +12,8 @@ class TrabajoActualizar(BaseModel):
     titulo: Optional[str] = None
     descripcion: Optional[str] = None
 
-# Modelo usado en responses (incluye id)
 class Trabajo(TrabajoBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True

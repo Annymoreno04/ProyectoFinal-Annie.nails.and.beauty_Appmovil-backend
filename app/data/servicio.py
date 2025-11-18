@@ -2,9 +2,7 @@ from typing import List, Optional
 from app.core.db import get_conn
 from app.models.servicio import ServicioEnBD, ServicioCrear, ServicioActualizar
 
-# ============================================================
-# ✅ OBTENER TODOS LOS SERVICIOS
-# ============================================================
+
 def obtener_todos() -> List[ServicioEnBD]:
     conn = get_conn()
     cur = conn.cursor(dictionary=True)
@@ -14,10 +12,6 @@ def obtener_todos() -> List[ServicioEnBD]:
     conn.close()
     return [ServicioEnBD(**fila) for fila in filas]
 
-
-# ============================================================
-# ✅ OBTENER SERVICIO POR ID
-# ============================================================
 def obtener_por_id(id_servicio: int) -> Optional[ServicioEnBD]:
     conn = get_conn()
     cur = conn.cursor(dictionary=True)
@@ -28,9 +22,6 @@ def obtener_por_id(id_servicio: int) -> Optional[ServicioEnBD]:
     return ServicioEnBD(**fila) if fila else None
 
 
-# ============================================================
-# ✅ INSERTAR NUEVO SERVICIO
-# ============================================================
 def insertar(servicio: ServicioCrear) -> int:
     conn = get_conn()
     cur = conn.cursor()
@@ -51,10 +42,6 @@ def insertar(servicio: ServicioCrear) -> int:
     conn.close()
     return nuevo_id
 
-
-# ============================================================
-# ✅ ACTUALIZAR SERVICIO
-# ============================================================
 def actualizar(id_servicio: int, servicio: ServicioActualizar) -> bool:
     campos = []
     valores = []
@@ -85,9 +72,6 @@ def actualizar(id_servicio: int, servicio: ServicioActualizar) -> bool:
     return actualizado
 
 
-# ============================================================
-# ✅ ELIMINAR SERVICIO
-# ============================================================
 def eliminar(id_servicio: int) -> bool:
     conn = get_conn()
     cur = conn.cursor()

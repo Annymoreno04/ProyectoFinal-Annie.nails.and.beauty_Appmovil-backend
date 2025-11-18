@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-11-2025 a las 15:11:52
+-- Tiempo de generación: 18-11-2025 a las 06:03:24
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -56,8 +56,15 @@ CREATE TABLE `citas` (
   `id_empleado` int(11) DEFAULT NULL,
   `fecha_cita` date NOT NULL,
   `hora_inicio` time NOT NULL,
-  `estado` enum('pendiente','confirmada','completada','cancelada') DEFAULT 'pendiente'
+  `estado` enum('pendiente','confirmada','completada','cancelada','no_realizada') DEFAULT 'pendiente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `citas`
+--
+
+INSERT INTO `citas` (`id_cita`, `id_usuario`, `id_servicio`, `id_empleado`, `fecha_cita`, `hora_inicio`, `estado`) VALUES
+(27, 7, 2, 3, '2025-11-18', '12:40:00', 'completada');
 
 -- --------------------------------------------------------
 
@@ -81,12 +88,12 @@ CREATE TABLE `empleados` (
 --
 
 INSERT INTO `empleados` (`id_empleado`, `id_usuario`, `especialidad`, `anos_experiencia`, `descripcion`, `hora_inicio_atencion`, `hora_fin_atencion`, `estado`) VALUES
-(1, 10, 'Manicurista', 5, 'Experta en manicura con una pasión por el arte y la precisión. Con 5 años de experiencia, especializada en manicuras que promueven la salud de las uñas.', '09:00:00', '18:00:00', 'activo'),
-(2, 11, 'Manicurista', 4, 'Manicurista dedicada con habilidades expertas en cuidado de uñas. Con 4 años de trayectoria, combina técnicas modernas con atención meticulosa a los detalles.', '09:00:00', '18:00:00', 'activo'),
-(3, 12, 'Manicurista', 2, 'Profesional enfocada en la belleza y el bienestar de las uñas. Con 2 años de experiencia, fusiona técnicas tradicionales con las últimas tendencias', '09:00:00', '18:00:00', 'activo'),
-(4, 13, 'Manicurista', 1, 'Especialista en crear diseños impresionantes. Con 1 año en la industria, se enfoca en manicuras artísticas y terapéuticas que cuidan la salud de las uñas.', '09:00:00', '18:00:00', 'activo'),
-(5, 14, 'Manicurista', 4, 'Manicurista certificada con experiencia en técnicas avanzadas. Con 4 años, ofrece manicuras de alta calidad que combinan estética y bienestar.', '09:00:00', '18:00:00', 'activo'),
-(6, 15, 'Manicurista', 2, 'Comprometida con la excelencia y la creatividad. Con 2 años de experiencia, domina técnicas de cuidado de uñas desde lo clásico hasta lo contemporáneo.', '09:00:00', '18:00:00', 'activo');
+(1, 10, 'Manicurista', 5, 'Experta en manicura con una pasión por el arte y la precisión. Con 5 años de experiencia, especializada en manicuras que promueven la salud de las uñas.', '10:00:00', '17:00:00', 'activo'),
+(2, 11, 'Manicurista', 4, 'Manicurista dedicada con habilidades expertas en cuidado de uñas. Con 4 años de trayectoria, combina técnicas modernas con atención meticulosa a los detalles.', '10:00:00', '17:00:00', 'activo'),
+(3, 12, 'Manicurista', 2, 'Profesional enfocada en la belleza y el bienestar de las uñas. Con 2 años de experiencia, fusiona técnicas tradicionales con las últimas tendencias.', '10:00:00', '17:00:00', 'activo'),
+(4, 13, 'Manicurista', 1, 'Especialista en crear diseños impresionantes. Con 1 año en la industria, se enfoca en manicuras artísticas y terapéuticas que cuidan la salud de las uñas.', '10:00:00', '17:00:00', 'activo'),
+(5, 14, 'Manicurista', 4, 'Manicurista certificada con experiencia en técnicas avanzadas. Con 4 años, ofrece manicuras de alta calidad que combinan estética y bienestar.', '10:00:00', '17:00:00', 'activo'),
+(6, 15, 'Manicurista', 2, 'Comprometida con la excelencia y la creatividad. Con 2 años de experiencia, domina técnicas de cuidado de uñas desde lo clásico hasta lo contemporáneo.', '10:00:00', '17:00:00', 'activo');
 
 -- --------------------------------------------------------
 
@@ -242,14 +249,13 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuario`, `id_rol`, `nombre_usuario`, `nombre`, `telefono`, `correo`, `clave`, `estado`) VALUES
 (7, 2, 'Angie04', 'Angela Romana c', '3152036651', 'angir12@gmail.com', '$2b$12$6zbW6.rUOTnbV6jWtbYSpuoPh7bhzCnma/S2i7TSHBK4zxCX.O7HO', 'activo'),
 (8, 1, 'Anny04', 'Anny Moreno', '322566615', 'morempleudo@gmail.com', '$2b$12$pgOljW03l4W.UFNLOeRefehPkj7HbNqxgq7AqzL/ybF0o9WpP8iKi', 'activo'),
-(9, 3, 'Ann1', 'Anny Moreno', '321456668', 'morei@gmail.com', '12345', 'activo'),
-(10, 3, 'angie.mena', 'Angie Mena', '3001234567', 'angie.mena@salon.com', '12345', 'activo'),
-(11, 3, 'caroline.perea', 'Caroline Perea', '3001234568', 'caroline.perea@salon.com', '12345', 'activo'),
-(12, 3, 'stefhany.lemus', 'Stefhany Lemus', '3001234569', 'stefhany.lemus@salon.com', '12345', 'activo'),
-(13, 3, 'andrea.moreno', 'Andrea Moreno', '3001234570', 'andrea.moreno@salon.com', '$2b$12$6YoIaxfwnHDg5k5mM31f1u7Vgqxiur4EZVGdBv.WvKoxlJJmjNuOG', 'activo'),
-(14, 3, 'tatiana.palacios', 'Tatiana Palacios', '3001234571', 'tatiana.palacios@salon.com', '12345', 'activo'),
-(15, 3, 'ashly.valderrama', 'Ashly Valderrama', '3001234572', 'ashly.valderrama@salon.com', '12345', 'activo'),
-(16, 2, 'annyjjj', 'amyu', '444444444', 'morempleukkdo@gmail.com', '$2b$12$2bkaclKDV512cPbLuo8nzuprmBrKdhYgyCtkADL3jxepEMeH2Nsqa', 'activo');
+(9, 3, 'ann11', 'Anny Moreno L', '3015623589', 'morenoleudoaaa@gmail.com', '$2b$12$NaBYI1PWOgHaaKphaPBDgeptalWGkwtgsYfm4O7NMiYAsP3.hTPBS', 'activo'),
+(10, 3, 'angie.mena', 'Angie Mena', '3001234567', 'angie.mena@salon.com', '$2b$12$Y59yFPE2D.G8SeG.FUUtZeg9.FVHSih/Zic/UCBLFcUF3OeWuZhb6', 'activo'),
+(11, 3, 'caroline.perea', 'Caroline Perea', '3001234568', 'caroline.perea@salon.com', '$2b$12$zocpNyQiZjv4ypFBhJoGM.VMtWQJ8zWMQ4utQfiYOH32pJtrdyf7S', 'activo'),
+(12, 3, 'stefhany.lemus', 'Stefhany Lemus', '3001234569', 'stefhany.lemus@salon.com', '$2b$12$hUpI6Y6AyumLlEKVPfJQZu1r7AWIgnBljmf0KGBeI8Xr1hnEJE3c2', 'activo'),
+(13, 3, 'andrea.moreno', 'Andrea Moreno', '3001234570', 'andrea.moreno@salon.com', '$2b$12$.FKX7ZYVdws.z4t087B/1exUPnjgavam28UsVkRLQ5Eia7bmNtKz6', 'activo'),
+(14, 3, 'tatiana.palacios', 'Tatiana Palacios', '3001234571', 'tatiana.palacios@salon.com', '$2b$12$fvPE7Pk/7gLgOFdLq5MoZe8QuCQc9EPk80tcg0KKKryFSBNY.l2Ge', 'activo'),
+(15, 2, 'ashly.valderrama', 'Ashly Valderrama', '3001234572', 'ashly.valderrama@salon.com', '$2b$12$sS1zcTFk5kg3GB0U75o3tetEZvqnsdVGK8LcQqhcM2vAa8ihjZ4YK', 'activo');
 
 --
 -- Índices para tablas volcadas
@@ -333,7 +339,7 @@ ALTER TABLE `categorias_servicios`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `empleados`
@@ -375,7 +381,7 @@ ALTER TABLE `tutoriales`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Restricciones para tablas volcadas

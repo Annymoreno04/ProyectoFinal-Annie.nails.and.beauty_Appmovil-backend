@@ -1,7 +1,6 @@
-# app/routers/horario.py
 
 from fastapi import APIRouter, HTTPException
-from app.core.db import get_conn  # conexión directa a la base de datos
+from app.core.db import get_conn  
 
 router = APIRouter(
     prefix="/horarios",

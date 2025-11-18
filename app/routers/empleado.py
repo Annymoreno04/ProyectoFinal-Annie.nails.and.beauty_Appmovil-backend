@@ -1,18 +1,14 @@
-# app/rutas/empleados.py
 
 from fastapi import APIRouter, HTTPException
 from typing import List
 from app.models.empleado import EmpleadoEnBD
-from app.core.db import get_conn  # conexión directa a la base de datos
+from app.core.db import get_conn
 
 router = APIRouter(
     prefix="/empleados",
     tags=["Empleados"]
 )
 
-# ============================================================
-# ✅ OBTENER TODOS LOS EMPLEADOS
-# ============================================================
 @router.get("/", response_model=List[EmpleadoEnBD])
 def obtener_empleados():
     sql = """
@@ -42,11 +38,6 @@ def obtener_empleados():
 
     return [EmpleadoEnBD(**fila) for fila in filas]
 
-
-
-# ============================================================
-# ✅ OBTENER EMPLEADO POR ID_USUARIO
-# ============================================================
 @router.get("/usuario/{id_usuario}", response_model=EmpleadoEnBD)
 def obtener_empleado_por_usuario(id_usuario: int):
     sql = """
@@ -70,9 +61,6 @@ def obtener_empleado_por_usuario(id_usuario: int):
     return EmpleadoEnBD(**fila)
 
 
-# ============================================================
-# ✅ CREAR NUEVO EMPLEADO
-# ============================================================
 @router.post("/", response_model=dict)
 def crear_empleado(empleado: EmpleadoEnBD):
     sql = """
@@ -103,10 +91,6 @@ def crear_empleado(empleado: EmpleadoEnBD):
 
     return {"mensaje": "Empleado registrado correctamente", "id_empleado": nuevo_id}
 
-
-# ============================================================
-# ✅ ACTUALIZAR EMPLEADO
-# ============================================================
 @router.put("/{id_empleado}", response_model=dict)
 def actualizar_empleado(id_empleado: int, empleado: EmpleadoEnBD):
     sql = """
@@ -145,9 +129,6 @@ def actualizar_empleado(id_empleado: int, empleado: EmpleadoEnBD):
     return {"mensaje": "Empleado actualizado correctamente"}
 
 
-# ============================================================
-# ✅ ELIMINAR EMPLEADO
-# ============================================================
 @router.delete("/{id_empleado}", response_model=dict)
 def eliminar_empleado(id_empleado: int):
     sql = "DELETE FROM empleados WHERE id_empleado = %s"

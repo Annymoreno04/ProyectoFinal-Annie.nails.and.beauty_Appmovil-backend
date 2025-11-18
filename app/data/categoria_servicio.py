@@ -1,8 +1,5 @@
 from app.core.db import get_conn
 
-# ============================================================
-# ✅ Crear categoría
-# ============================================================
 def insertar_categoria(nombre, descripcion):
     conexion = get_conn()
     try:
@@ -20,10 +17,6 @@ def insertar_categoria(nombre, descripcion):
     finally:
         conexion.close()
 
-
-# ============================================================
-# ✅ Listar todas las categorías
-# ============================================================
 def obtener_categorias():
     conexion = get_conn()
     try:
@@ -36,10 +29,6 @@ def obtener_categorias():
     finally:
         conexion.close()
 
-
-# ============================================================
-# ✅ Obtener una categoría por ID
-# ============================================================
 def obtener_categoria_por_id(id_categoria):
     conexion = get_conn()
     try:
@@ -56,9 +45,6 @@ def obtener_categoria_por_id(id_categoria):
         conexion.close()
 
 
-# ============================================================
-# ✅ Actualizar categoría
-# ============================================================
 def actualizar_categoria(id_categoria, nombre, descripcion):
     conexion = get_conn()
     try:
@@ -74,12 +60,9 @@ def actualizar_categoria(id_categoria, nombre, descripcion):
         print(f"❌ Error al actualizar categoría: {e}")
         raise
     finally:
-        conexion.close()  # 🔥 Esto libera el bloqueo
+        conexion.close()  
 
 
-# ============================================================
-# ✅ Eliminar categoría
-# ============================================================
 def eliminar_categoria(id_categoria):
     conexion = get_conn()
     try:

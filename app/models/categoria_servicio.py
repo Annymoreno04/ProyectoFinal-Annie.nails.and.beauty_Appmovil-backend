@@ -12,7 +12,7 @@ class Categoria(CategoriaBase):
     id_categoria: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
         
 class CategoriaActualizar(BaseModel):
     nombre: str

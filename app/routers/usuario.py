@@ -5,10 +5,8 @@ from ..models.usuario import Usuario, UsuarioEnBD, UsuarioActualizar
 from ..data.usuarios import actualizar_usuario, obtener_por_nombre_usuario
 from .autenticacion import obtener_usuario_actual
 
-# Router con prefijo /usuario
 router = APIRouter(prefix="/usuario", tags=["usuario"])
 
-# Router sin prefijo para rutas especiales
 router_usuarios = APIRouter(tags=["usuarios"])
 
 
@@ -163,8 +161,7 @@ def validar_disponibilidad(
     
     if campo == "correo" and valor == usuario_actual.correo:
         return {"disponible": True, "mensaje": "Es tu correo actual"}
-    
-    # Aquí podrías verificar en la BD si existe otro usuario con ese valor
+
     return {"disponible": True, "campo": campo, "valor": valor}
 
 
@@ -189,7 +186,6 @@ def obtener_ayuda():
     }
 
 
-# Endpoint para compatibilidad con cliente React Native
 @router_usuarios.post("/usuarios/actualizar")
 async def actualizar_perfil_clientes(
     nombre: Optional[str] = None,

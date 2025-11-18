@@ -1,13 +1,8 @@
-# app/repositorios/empleados_sql.py
 
 from typing import Optional, List
-from app.core.db import get_conn  # ✅ conexión a la base de datos
+from app.core.db import get_conn 
 from app.models.empleado import EmpleadoEnBD
 
-
-# ============================================================
-# ✅ OBTENER EMPLEADO POR ID_USUARIO
-# ============================================================
 def obtener_por_id_usuario(id_usuario: int) -> Optional[EmpleadoEnBD]:
     """
     Obtiene un empleado según el ID de usuario vinculado.
@@ -40,9 +35,6 @@ def obtener_por_id_usuario(id_usuario: int) -> Optional[EmpleadoEnBD]:
     return EmpleadoEnBD(**fila)
 
 
-# ============================================================
-# ✅ INSERTAR EMPLEADO
-# ============================================================
 def insertar_empleado(empleado: EmpleadoEnBD) -> int:
     """
     Inserta un nuevo empleado en la base de datos.
@@ -77,9 +69,6 @@ def insertar_empleado(empleado: EmpleadoEnBD) -> int:
     return nuevo_id
 
 
-# ============================================================
-# ✅ OBTENER TODOS LOS EMPLEADOS
-# ============================================================
 def obtener_todos() -> List[EmpleadoEnBD]:
     """
     Devuelve la lista de todos los empleados registrados.
@@ -108,9 +97,6 @@ def obtener_todos() -> List[EmpleadoEnBD]:
     return [EmpleadoEnBD(**fila) for fila in filas]
 
 
-# ============================================================
-# ✅ ACTUALIZAR EMPLEADO
-# ============================================================
 def actualizar_empleado(id_empleado: int, empleado: EmpleadoEnBD) -> bool:
     """
     Actualiza los datos de un empleado existente.
@@ -149,9 +135,6 @@ def actualizar_empleado(id_empleado: int, empleado: EmpleadoEnBD) -> bool:
     return actualizado
 
 
-# ============================================================
-# ✅ ELIMINAR EMPLEADO
-# ============================================================
 def eliminar_empleado(id_empleado: int) -> bool:
     """
     Elimina un empleado de la base de datos.
